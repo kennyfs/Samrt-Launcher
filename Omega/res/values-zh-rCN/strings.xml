@@ -136,7 +136,6 @@
     <string name="units_imperial">华氏度</string>
     <string name="developer_options_title">开发者选项</string>
     <string name="developer_options_enabled">开发者选项已开启</string>
-    <string name="action_press_back">返回键</string>
     <string name="icon_shape_top_left">左上角</string>
     <string name="smartspace_provider_calendar">日历事件</string>
     <string name="deny">拒绝</string>
@@ -153,7 +152,7 @@
     <string name="smartspace_widget_provider_not_found">获取 Google 应用。</string>
     <string name="name_provider_alarm_events">即将到来的警报</string>
     <string name="resuable_text_alarm">警报</string>
-    <string name="smartspace_provider_bridge">Rootless Pixel Bridge</string>
+    <string name="smartspace_provider_bridge">无根像素桥</string>
     <string name="title_smartspace_feed_theme">信息源主题</string>
     <string name="smartspace_hours_mins">%1$s %2$s</string>
     <string name="smartspace_now">现在</string>
@@ -292,8 +291,6 @@
     <string name="icu_abbrev_date">dd MMMM</string>
     <string name="icu_abbrev_time_12h">hh:mm aa</string>
     <string name="icu_abbrev_time">HH:mm</string>
-    <string name="icu_abbrev_wday_month_day_no_year">EEEEMMMd</string>
-    <string name="full_wday_month_day_no_year">EEEE, MMMM d</string>
     <string name="onbording_settings_title">设置 %s</string>
     <string name="smartspace_in_time">在 %1$s</string>
     <string name="title_dock_two_row">显示第二行</string>
@@ -430,7 +427,7 @@
     <string name="backup_create_new">创建新备份</string>
     <string name="backup_delete_failed">出错了</string>
     <string name="summary_app_suggestions">为所有应用和主屏幕</string>
-    <string name="folder_name">文件夹名称</string>
+    <string name="folder_name">目录名称</string>
     <string name="section_apps">应用</string>
     <string name="section_web">网络</string>
     <string name="icon_picker_load_failed">无法加载更多图标。</string>
@@ -452,10 +449,29 @@
     <string name="protected_apps">受保护的应用程序</string>
     <string name="protected_app_selected">受保护的应用程序 (%1$d)</string>
     <string name="cat_dock_search">快捷启动栏和船坞</string>
-    <string name="title__general_gestures_dash">手势和短跑</string>
+    <string name="title__general_gestures_dash">手势和Dash</string>
     <string name="title__general_search_feed">搜索和订阅源</string>
     <string name="title__general_widgets_notifications">小部件和通知</string>
     <string name="title__general_profile">用户文件</string>
     <string name="pref_category__dash">快速启动栏</string>
     <string name="title__drawer_rows">行数</string>
+    <string name="selected_apps">已选择的软件 (%1$d)</string>
+    <string name="app_reset">重选</string>
+    <string name="owm_get_your_own_key">从 api.openweathermap,org 获取 API 密钥。</string>
+    <string name="weather_provider_owm" translatable="true">Open Weather Map</string>
+    <string name="default_city">圣萨尔瓦多，西南</string>
+    <string name="weather_api_key">OWM API 密钥</string>
+    <string name="weather_city">城市</string>
+    <string name="notification_dots_missing_notification_access">要显示通知点，请打开应用通知访问</string>
+    <string name="contributor_role">贡献者</string>
+    <string name="author_role">开发者</string>
+    <string name="notification_dots_disabled">要显示通知点，请在设置中启用显示通知点</string>
+    <string name="tap_to_enable">点击项目以启用</string>
+    <string name="folder_opacity">文件夹不透明度</string>
+    <string name="reset_custom_icon">移除定制图标</string>
+    <string name="show_top_shadow">显示顶部阴影</string>
+    <string name="title_themed_icons">主题图标</string>
+    <string name="dash_line_size">阴影线尺寸</string>
+    <string name="title_override_corner_radius_value">全局圆角半径</string>
+    <string name="title__dock_icon_size_enforce">强制启用自定义图标大小</string>
 </resources>
