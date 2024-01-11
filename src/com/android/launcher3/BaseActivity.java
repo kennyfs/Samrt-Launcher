@@ -127,7 +127,7 @@ public abstract class BaseActivity extends Activity implements ActivityContext {
     @ActivityFlags
     private int mActivityFlags;
 
-    // When the recents animation is running, the visibility of the Launcher is managed by the
+    // When the recent animation is running, the visibility of the Launcher is managed by the
     // animation
     @InvisibilityFlags
     private int mForceInvisible;
@@ -287,7 +287,7 @@ public abstract class BaseActivity extends Activity implements ActivityContext {
 
     /**
      * Used to set the override visibility state, used only to handle the transition home with the
-     * recents animation.
+     * recent animation.
      *
      * @see QuickstepTransitionManager#createWallpaperOpenRunner
      */
@@ -300,7 +300,7 @@ public abstract class BaseActivity extends Activity implements ActivityContext {
     }
 
     /**
-     * @return Wether this activity should be considered invisible regardless of actual visibility.
+     * @return Weather this activity should be considered invisible regardless of actual visibility.
      */
     public boolean isForceInvisible() {
         return hasSomeInvisibleFlag(INVISIBLE_FLAGS);

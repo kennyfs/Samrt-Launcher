@@ -41,7 +41,7 @@ android {
     defaultConfig {
         minSdk = 26
         targetSdk = 32
-        applicationId = "com.saggitt.omega"
+        applicationId = "com.ClothesPizza.Smartlauncher"
 
         versionName = name
         versionCode = code
@@ -136,7 +136,7 @@ android {
     productFlavors {
         create("aosp") {
             dimension = "app"
-            applicationId = "com.saggitt.omega"
+            applicationId = "com.ClothesPizza.Smartlauncher"
             testApplicationId = "com.android.launcher3.tests"
         }
 

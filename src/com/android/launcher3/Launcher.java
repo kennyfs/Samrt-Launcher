@@ -2032,7 +2032,7 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
     public boolean startActivitySafely(View v, Intent intent, ItemInfo item) {
         if (!hasBeenResumed()) {
             // Workaround an issue where the WM launch animation is clobbered when finishing the
-            // recents animation into launcher. Defer launching the activity until Launcher is
+            // recent animation into launcher. Defer launching the activity until Launcher is
             // next resumed.
             addOnResumeCallback(() -> startActivitySafely(v, intent, item));
             if (mOnDeferredActivityLaunchCallback != null) {
