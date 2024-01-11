@@ -107,6 +107,7 @@ import com.saggitt.omega.PREFS_GESTURE_LONG_PRESS
 import com.saggitt.omega.PREFS_GESTURE_SWIPE_DOWN
 import com.saggitt.omega.PREFS_GESTURE_SWIPE_UP
 import com.saggitt.omega.PREFS_GESTURE_SWIPE_UP_DOCK
+import com.saggitt.omega.PREFS_HIDDEN_USAGE_SET
 import com.saggitt.omega.PREFS_HIDDEN_SET
 import com.saggitt.omega.PREFS_ICON_PACK
 import com.saggitt.omega.PREFS_ICON_SHAPE
@@ -866,6 +867,15 @@ class OmegaPreferences(val context: Context) : BasePreferences(context) {
         onChange = restart
     )
 
+    var hiddenUsageAppSet = StringSetPref(
+        key = PREFS_HIDDEN_USAGE_SET,
+        titleId = R.string.title__hide_apps_usage,
+        summaryId = R.string.summary__drawer_hide_apps,
+        defaultValue = setOf(),
+        navRoute = Routes.PREFS_HIDE_APPS_USAGE,
+        onChange = reloadApps
+    )
+    var hiddenUsageApps by hiddenUsageAppSet
 
     // WIDGETS (SMARTSPACE) & NOTIFICATIONS
     var smartspaceUsePillQsb = BooleanPref(

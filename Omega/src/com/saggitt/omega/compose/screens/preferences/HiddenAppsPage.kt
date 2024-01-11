@@ -25,9 +25,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
-import com.saggitt.omega.util.App
-import com.saggitt.omega.util.appComparator
-import com.saggitt.omega.util.comparing
 
 @Composable
 fun HiddenAppsPage() {
@@ -42,15 +39,9 @@ fun HiddenAppsPage() {
     AppSelectionPage(
         pageTitle = title,
         selectedApps = hiddenApps,
-        pluralTitleId = R.string.hide_app_selected
+        pluralTitleId = R.string.hide_app_selected,
+        mAppsComparator = getAppsComparator(hiddenApps)
     ) { selectedApps ->
         prefs.drawerHiddenApps = selectedApps
     }
-}
-
-@Composable
-fun hiddenAppsComparator(hiddenApps: Set<String>): Comparator<App> = remember {
-    comparing<App, Int> {
-        if (hiddenApps.contains(it.key.toString())) 0 else 1
-    }.then(appComparator)
 }

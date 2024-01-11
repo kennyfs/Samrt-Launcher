@@ -48,10 +48,10 @@ open class PageItem(
             Routes.PREFS_GESTURES
         )
 
-        val PrefsAppList = PageItem(
+        val PrefsHideUsageApps = PageItem(
             R.string.title__check_hide_app_list,
             R.drawable.ic_hide_apps,
-            Routes.PREFS_APP_LIST
+            Routes.PREFS_HIDE_APPS_USAGE
         )
         val PrefsBackup = PageItem(
             R.string.backups,

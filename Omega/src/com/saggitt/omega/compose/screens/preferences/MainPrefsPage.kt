@@ -58,7 +58,7 @@ fun MainPrefsPage() {
         PageItem.PrefsWidgetsNotifications,
         PageItem.PrefsSearchFeed,
         PageItem.PrefsGesturesDash,
-        PageItem.PrefsAppList
+        PageItem.PrefsHideUsageApps
     )
     val otherPrefs = listOfNotNull(
         PageItem.PrefsBackup,
@@ -136,6 +136,7 @@ fun NavGraphBuilder.mainPrefsGraph(route: String) {
         preferenceGraph(route = subRoute(Routes.PREFS_DM), { BlankScreen() }) // TODO
         preferenceGraph(route = subRoute(Routes.PREFS_DEV), { DevPrefPage() })
         gesturesPrefGraph(route = subRoute(Routes.PREFS_GESTURES))
+        preferenceGraph(route = subRoute(Routes.PREFS_HIDE_APPS_USAGE), { HideAppsUsagePage() })
         aboutPrefsGraph(route = subRoute(Routes.ABOUT))
     }
 }

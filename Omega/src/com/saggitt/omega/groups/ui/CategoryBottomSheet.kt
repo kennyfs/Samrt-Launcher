@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
 import com.saggitt.omega.compose.screens.preferences.AppSelectionPage
+import com.saggitt.omega.compose.screens.preferences.getAppsComparator
 import com.saggitt.omega.groups.AppGroupsManager
 import com.saggitt.omega.util.Config
 
@@ -113,6 +114,7 @@ fun GroupAppSelection(
         pageTitle = pageTitle,
         selectedApps = selected,
         pluralTitleId = R.string.selected_apps,
+        mAppsComparator = getAppsComparator(selected),
         onSave = {
             selected = it
             onSave(it)

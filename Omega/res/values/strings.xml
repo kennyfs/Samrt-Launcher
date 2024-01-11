@@ -97,6 +97,7 @@
     <string name="title__drawer_paged_apps">Paged Apps view</string>
     <string name="title__drawer_hide_icon_labels">Hide app names</string>
     <string name="title__drawer_hide_apps">Hidden App Shortcuts</string>
+    <string name="title__hide_apps_usage">Hide Apps Usage (For Recommending System)</string>
     <string name="title__drawer_icon_size">All Apps Icon Size</string>
     <string name="title__drawer_categorization">Categories</string>
     <string name="title__drawer_icon_popup_menu">Shortcut Bubble</string>
@@ -121,6 +122,7 @@
     <string name="summary_search_hidden_apps">Show hidden shortcuts in results.</string>
     <string name="summary_all_apps_google_search">Find web results and apps</string>
     <string name="summary__drawer_hide_apps">Hide app from the app drawer</string>
+    <string name="summary__hide_apps_usage">Hide app usage to recommending system</string> <!-- Not used, but should use it -->
     <string name="summary_app_categorization_enable">Create tabs or folders</string>
     <string name="summary_app_suggestions">For all apps and Home screen</string>
     <string name="title_disable_suggestions_prompt">Turn off app suggestions</string>
@@ -159,6 +161,7 @@
     <string name="protected_apps">Protected Apps</string>
     <string name="protected_app_selected">Protected Apps (%1$d)</string>
     <string name="hide_app_selected">Hidden Apps (%1$d)</string>
+    <string name="hide_usage_app_selected">Hide Apps Usage (%1$d)</string>
     <string name="hide_app_reset">Reset hidden apps</string>
     <string name="selected_apps">Selected Apps (%1$d)</string>
     <string name="app_reset">Reset Selection</string>

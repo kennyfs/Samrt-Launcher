@@ -39,7 +39,8 @@ fun ProtectedAppsPage() {
     AppSelectionPage(
         pageTitle = title,
         selectedApps = protectedApps,
-        pluralTitleId = R.string.protected_app_selected
+        pluralTitleId = R.string.protected_app_selected,
+        mAppsComparator = getAppsComparator(protectedApps)
     ) { selectedApps ->
         prefs.drawerProtectedApps = selectedApps
     }

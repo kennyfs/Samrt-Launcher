@@ -141,6 +141,9 @@ const val PREFS_GESTURE_SWIPE_UP = "pref_gesture_swipe_up"
 const val PREFS_GESTURE_SWIPE_UP_DOCK = "pref_gesture_dock_swipe_up"
 const val PREFS_GESTURE_ASSISTANT = "pref_gesture_launch_assistant"
 
+// HIDDEN USAGE PREFS
+const val PREFS_HIDDEN_USAGE_SET = "hidden_app_usage_set"
+
 //SMARTSPACE PREFS
 const val PREFS_SMARTSPACE_SHOW = "pref_show_smartspace"
 const val PREFS_SMARTSPACE_ENABLE = "enable_smartspace"

@@ -47,13 +47,23 @@ import com.android.launcher3.R
 import com.saggitt.omega.compose.components.ListItemWithIcon
 import com.saggitt.omega.compose.components.OverflowMenu
 import com.saggitt.omega.compose.components.ViewWithActionBar
+import com.saggitt.omega.util.App
+import com.saggitt.omega.util.appComparator
 import com.saggitt.omega.util.appsList
+import com.saggitt.omega.util.comparing
 
+@Composable
+fun getAppsComparator(hiddenApps: Set<String>): Comparator<App> = remember {
+    comparing<App, Int> {
+        if (hiddenApps.contains(it.key.toString())) 0 else 1
+    }.then(appComparator)
+}
 @Composable
 fun AppSelectionPage(
     pageTitle: String,
     selectedApps: Set<String>,
     pluralTitleId: Int,
+    mAppsComparator: Comparator<App>,
     onSave: (Set<String>) -> Unit
 ) {
     val colors = CheckboxDefaults.colors(
@@ -62,7 +72,7 @@ fun AppSelectionPage(
     )
     var selected by remember { mutableStateOf(selectedApps) }
     var title by remember { mutableStateOf(pageTitle) }
-    val allApps by appsList(comparator = hiddenAppsComparator(selectedApps))
+    val allApps by appsList(comparator = mAppsComparator)
     val pluralTitle = stringResource(id = pluralTitleId, selected.size)
     title = if (selected.isNotEmpty()) {
         pluralTitle
