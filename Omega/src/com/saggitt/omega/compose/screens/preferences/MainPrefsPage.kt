@@ -57,7 +57,8 @@ fun MainPrefsPage() {
     val featuresPrefs = listOf(
         PageItem.PrefsWidgetsNotifications,
         PageItem.PrefsSearchFeed,
-        PageItem.PrefsGesturesDash
+        PageItem.PrefsGesturesDash,
+        PageItem.PrefsAppList
     )
     val otherPrefs = listOfNotNull(
         PageItem.PrefsBackup,

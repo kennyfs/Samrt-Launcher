@@ -28,6 +28,8 @@ object Routes {
     const val PREFS_WIDGETS = "prefs_widgets"
     const val PREFS_SEARCH = "prefs_search"
     const val PREFS_GESTURES = "prefs_gestures"
+
+    const val PREFS_APP_LIST = "prefs_check_hide_apps"
     const val PREFS_BACKUPS = "prefs_backups"
     const val PREFS_DM = "prefs_desktop_mode"
     const val PREFS_DEV = "prefs_developer"

@@ -34,6 +34,7 @@
     <string name="title__general_notifications">Gestures and Notifications</string>
     <string name="title__general_profile">Profile</string>
     <string name="title__general_gestures_dash">Gestures &amp; Dash</string>
+    <string name="title__check_hide_app_list">Hide usage of Apps</string>
     <string name="title__general_search_feed">Search &amp; Feed</string>
     <string name="title__general_widgets_notifications">Widgets &amp; Notifications</string>
     <string name="summary__general_desktop">Customize your desktop</string>

@@ -1,0 +1,35 @@
+<!--
+  ~  Using code from https://github.com/StylingAndroid/AnimatedIcons/blob/8f93ee6d62d5ac268d3706c683c334c5fd7d6105/app/src/main/res/drawable/strikethru_off.xml
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+
+    <path
+        android:fillAlpha="0.10"
+        android:fillColor="?colorAccent"
+        android:pathData="M 12 12 m -12 0 a 12 12 90 1 1 24 0 a 12 12 90 1 1 -24 0"
+        android:strokeAlpha="0.10" />
+    <group
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:pivotX="12"
+        android:pivotY="12">
+        <clip-path
+            android:name="strike_mask"
+            android:pathData="M0,0H24V24H0Z M4,4L20,20L21,19L5,3Z" />
+
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z" />
+
+        <path
+            android:name="strike"
+            android:fillColor="#FFFFFF"
+            android:pathData="M4,4L20,20L19,21L3,5Z" />
+    </group>
+
+</vector>
