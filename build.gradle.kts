@@ -14,10 +14,11 @@ val vRoom = "2.5.0-beta01"
 
 plugins {
     id("com.android.application").version("7.3.1")
-    kotlin("android").version("1.7.20")
-    kotlin("kapt").version("1.7.20")
-    kotlin("plugin.parcelize").version("1.7.20")
+    kotlin("android").version("1.8.10")
+    kotlin("kapt").version("1.8.10")
+    kotlin("plugin.parcelize").version("1.8.10")
     id("com.google.protobuf").version("0.8.19") // TODO consider moving to 0.9.X https://github.com/google/protobuf-gradle-plugin/releases
+    id("com.google.devtools.ksp").version("1.8.10-1.0.9")
 }
 
 allprojects {
@@ -41,7 +42,7 @@ android {
     defaultConfig {
         minSdk = 26
         targetSdk = 32
-        applicationId = "com.ClothesPizza.Smartlauncher"
+        applicationId = "com.clothespizza.smartlauncher"
 
         versionName = name
         versionCode = code
@@ -136,7 +137,7 @@ android {
     productFlavors {
         create("aosp") {
             dimension = "app"
-            applicationId = "com.ClothesPizza.Smartlauncher"
+            applicationId = "com.clothespizza.smartlauncher"
             testApplicationId = "com.android.launcher3.tests"
         }
 
