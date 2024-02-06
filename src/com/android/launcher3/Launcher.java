@@ -207,6 +207,10 @@ import com.saggitt.omega.OmegaApp;
 import com.saggitt.omega.OmegaLauncher;
 import com.saggitt.omega.OverlayCallbackImpl;
 import com.saggitt.omega.util.Config;
+import com.saggitt.omega.appusage.UsageDataCollector;
+import com.saggitt.omega.appusage.AppUsage;
+import com.saggitt.omega.appusage.AppUsageDao;
+import com.saggitt.omega.appusage.AppUsageDatabase;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -218,6 +222,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+import androidx.room.Room;
 
 /**
  * Default launcher application.
@@ -225,9 +230,14 @@ import java.util.stream.Stream;
 public class Launcher extends StatefulActivity<LauncherState> implements LauncherExterns,
         Callbacks, InvariantDeviceProfile.OnIDPChangeListener, PluginListener<OverlayPlugin>{
     public static final String TAG = "Launcher";
-
+    
     public static final ActivityTracker<Launcher> ACTIVITY_TRACKER = new ActivityTracker<>();
 
+    private AppUsageDatabase appUsageDB;
+    private AppUsageDao appUsageDao;
+
+    private UsageDataCollector usageDataCollector;
+    
     static final boolean LOGD = false;
 
     static final boolean DEBUG_STRICT_MODE = false;
@@ -371,8 +381,11 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        appUsageDB = Room.databaseBuilder(this, AppUsageDatabase.class, "appUsageDB").build();
+        appUsageDao = appUsageDB.appUsageDao();
+        usageDataCollector = new UsageDataCollector(this);
         Object traceToken = TraceHelper.INSTANCE.beginSection(ON_CREATE_EVT,
-                TraceHelper.FLAG_UI_EVENT);
+            TraceHelper.FLAG_UI_EVENT);
         if (DEBUG_STRICT_MODE) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
@@ -2041,7 +2054,10 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
             }
             return true;
         }
-
+        
+        AppUsage appUsageData = usageDataCollector.collectUsageData(item.getTargetPackage());
+        appUsageDao.insert(appUsageData);
+        
         boolean success = super.startActivitySafely(v, intent, item);
         if (success && v instanceof BubbleTextView) {
             // This is set to the view that launched the activity that navigated the user away

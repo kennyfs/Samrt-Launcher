@@ -29,8 +29,6 @@ import android.graphics.Insets;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.media.AudioDeviceInfo;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Process;
 import android.os.StrictMode;
@@ -67,7 +65,6 @@ import com.android.launcher3.util.Themes;
 import com.android.launcher3.util.TraceHelper;
 import com.android.launcher3.util.WindowBounds;
 import com.saggitt.omega.theme.ThemeOverride;
-
 /**
  * Extension of BaseActivity allowing support for drag-n-drop
  */

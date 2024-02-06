@@ -11,14 +11,16 @@ import android.os.BatteryManager
 import android.provider.Settings
 import android.bluetooth.BluetoothAdapter
 import androidx.core.content.ContextCompat.getSystemService
-import java.util.Date
+import java.util.Calendar
 
-class AppUsageCollector(private val context: Context) {
-    fun collectAppUsage(): AppUsage {
-        val timestamp = Date()
+class UsageDataCollector(private val context: Context) {
 
-        val packageName = context.packageName
-        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    fun collectUsageData(packageName: String): AppUsage {
+
+        val now = Calendar.getInstance()
+        val hour = now.get(Calendar.HOUR_OF_DAY) // 24 hour format
+
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val audioDevices = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS or AudioManager.GET_DEVICES_OUTPUTS)
 
         val isAudioDeviceConnected = audioDevices.any { device ->
@@ -39,10 +41,11 @@ class AppUsageCollector(private val context: Context) {
             )
         }
 
-        val isHeadsetConnected = context.registerReceiver(null, IntentFilter(Intent.ACTION_HEADSET_PLUG)).getIntExtra("state", 0) == 1
-
-        val batteryStatus = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-        val isCharging = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING
+        val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
+            context.registerReceiver(null, ifilter)
+        }
+        val status: Int? = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+        val isCharging: Boolean = status == BatteryManager.BATTERY_STATUS_CHARGING
 
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
@@ -55,10 +58,9 @@ class AppUsageCollector(private val context: Context) {
         val brightness = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
 
         return AppUsage(
-            0,
-            timestamp,
+            hour,
             packageName,
-            isHeadsetConnected,
+            isAudioDeviceConnected,
             isCharging,
             isWifiConnected,
             isMobileDataConnected,

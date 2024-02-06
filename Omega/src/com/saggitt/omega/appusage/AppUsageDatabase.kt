@@ -9,15 +9,14 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import java.util.Date
 import android.content.Context
 
 @Entity
 data class AppUsage(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    val timestamp: Date,
+    val hourOfDay: Int,
     val packageName: String,
-    val isHeadsetConnected: Boolean,
+    val isAudioDeviceConnected: Boolean,
     val isCharging: Boolean,
     val isWifiConnected: Boolean,
     val isMobileDataConnected: Boolean,
