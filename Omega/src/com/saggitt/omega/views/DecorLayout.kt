@@ -61,7 +61,7 @@ class DecorLayout(context: Context) : InsettableFrameLayout(context, null),
             background = BlurWallpaperProvider.getInstance(context).createDrawable().apply {
                 startListening()
             }
-        }
+        } else Unit
     }
 
     override fun draw(canvas: Canvas) {

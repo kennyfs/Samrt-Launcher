@@ -106,6 +106,7 @@ class Config(val context: Context) {
         const val REQUEST_PERMISSION_STORAGE_ACCESS = 666
         const val REQUEST_PERMISSION_LOCATION_ACCESS = 667
         const val REQUEST_PERMISSION_READ_CONTACTS = 668
+        const val REQUEST_PERMISSION_BLUETOOTH_ACCESS = 669
 
         const val GOOGLE_QSB = "com.google.android.googlequicksearchbox"
         const val DPS_PACKAGE = "com.google.android.as"

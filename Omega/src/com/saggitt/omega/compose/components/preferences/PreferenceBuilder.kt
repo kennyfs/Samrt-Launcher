@@ -43,6 +43,8 @@ val PreferenceBuilder =
             ) { onDialogPref(pref) }
             is BasePreferences.BooleanPref ->
                 SwitchPreference(pref = pref, index = index, groupSize = size)
+            is BasePreferences.ExportDatabasePref->
+                ExportDatabasePreference(pref = pref, index = index, groupSize = size)
             is BasePreferences.StringPref ->
                 StringPreference(pref = pref, index = index, groupSize = size)
             is BasePreferences.StringSetPref ->

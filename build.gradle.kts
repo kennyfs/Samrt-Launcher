@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 val vCompose = "1.3.0"
-val vComposeCompiler = "1.3.2"
+val vComposeCompiler = "1.4.4"
 val vAccompanist = "0.27.0"
 val vRoom = "2.5.0-beta01"
 
@@ -268,6 +268,10 @@ dependencies {
     implementation("androidx.room:room-runtime:$vRoom")
     implementation("androidx.room:room-ktx:$vRoom")
     kapt("androidx.room:room-compiler:$vRoom")
+
+    //Others
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
     // Recents lib dependency
     "withQuickstepImplementation"(project(":SystemUIShared"))

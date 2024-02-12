@@ -16,9 +16,10 @@
 
 package com.android.launcher3;
 
-import static com.android.launcher3.model.data.ItemInfoWithIcon.FLAG_ICON_BADGED;
+import com.android.launcher3.model.data.ItemInfoWithIcon;
 import static com.saggitt.omega.util.Config.REQUEST_PERMISSION_READ_CONTACTS;
 import static com.saggitt.omega.util.Config.REQUEST_PERMISSION_STORAGE_ACCESS;
+import static com.saggitt.omega.util.Config.REQUEST_PERMISSION_BLUETOOTH_ACCESS;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -768,7 +769,7 @@ public final class Utilities {
         int iconSize = appState.getInvariantDeviceProfile().iconBitmapSize;
         if (info.itemType == LauncherSettings.Favorites.ITEM_TYPE_DEEP_SHORTCUT) {
             boolean iconBadged = (info instanceof ItemInfoWithIcon)
-                    && (((ItemInfoWithIcon) info).runtimeStatusFlags & FLAG_ICON_BADGED) > 0;
+                    && (((ItemInfoWithIcon) info).runtimeStatusFlags & ItemInfoWithIcon.FLAG_ICON_BADGED) > 0;
             if ((info.id == ItemInfo.NO_ID && !iconBadged)
                     || !(obj instanceof ShortcutInfo)) {
                 // The item is not yet added on home screen.
@@ -955,7 +956,10 @@ public final class Utilities {
         ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
                 REQUEST_PERMISSION_STORAGE_ACCESS);
     }
-
+    public static void requestBluetoothPermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT},
+                REQUEST_PERMISSION_BLUETOOTH_ACCESS);
+    }
     public static void requestLocationPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, Config.REQUEST_PERMISSION_LOCATION_ACCESS);
     }

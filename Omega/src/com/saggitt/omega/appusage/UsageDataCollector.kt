@@ -58,6 +58,7 @@ class UsageDataCollector(private val context: Context) {
         val brightness = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
 
         return AppUsage(
+            0,
             hour,
             packageName,
             isAudioDeviceConnected,

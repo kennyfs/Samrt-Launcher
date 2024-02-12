@@ -471,6 +471,7 @@
     <string name="failed">發生錯誤。</string>
     <string name="developer_options_title">開發人員選項</string>
     <string name="title__dev_show_debug_info">顯示偵錯資訊</string>
+    <string name="title__export_usage">從資料庫匯出使用紀錄</string>
     <string name="title__restart_launcher">重新啟動</string>
     <string name="change_default_home">設定為主要應用程式</string>
     <string name="about_build_information">建置資訊</string>

@@ -105,6 +105,8 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import android.os.AsyncTask;
+
 import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -381,7 +383,7 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        appUsageDB = Room.databaseBuilder(this, AppUsageDatabase.class, "appUsageDB").build();
+        appUsageDB = AppUsageDatabase.Companion.getDatabase(this);
         appUsageDao = appUsageDB.appUsageDao();
         usageDataCollector = new UsageDataCollector(this);
         Object traceToken = TraceHelper.INSTANCE.beginSection(ON_CREATE_EVT,
@@ -2055,8 +2057,13 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
             return true;
         }
         
-        AppUsage appUsageData = usageDataCollector.collectUsageData(item.getTargetPackage());
-        appUsageDao.insert(appUsageData);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppUsage appUsageData = usageDataCollector.collectUsageData(item.getTargetPackage());
+                appUsageDao.insert(appUsageData);
+            }
+        }).start();
         
         boolean success = super.startActivitySafely(v, intent, item);
         if (success && v instanceof BubbleTextView) {

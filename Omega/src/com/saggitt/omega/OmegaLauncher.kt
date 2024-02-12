@@ -181,7 +181,9 @@ class OmegaLauncher : QuickstepLauncher(), LifecycleOwner, SavedStateRegistryOwn
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1
             && !Utilities.hasStoragePermission(this)
         ) Utilities.requestStoragePermission(this)
-
+        if(!Utilities.hasPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT)){
+            Utilities.requestBluetoothPermission(this)
+        }
         //Load People Info and request permission if needed
         if (prefs.searchContacts.onGetValue()) {
             if (!Utilities.hasPermission(this, android.Manifest.permission.READ_CONTACTS)) {

@@ -10,6 +10,7 @@ import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
+import androidx.room.OnConflictStrategy
 
 @Entity
 data class AppUsage(
@@ -29,14 +30,14 @@ interface AppUsageDao {
     @Query("SELECT * FROM AppUsage")
     fun getAll(): List<AppUsage>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(appUsage: AppUsage)
 
     @Delete
     fun delete(appUsage: AppUsage)
 }
 
-@Database(entities = [AppUsage::class], version = 1)
+@Database(entities = [AppUsage::class], version = 1, exportSchema = false)
 abstract class AppUsageDatabase : RoomDatabase() {
     abstract fun appUsageDao(): AppUsageDao
     companion object {
@@ -54,5 +55,21 @@ abstract class AppUsageDatabase : RoomDatabase() {
                 instance
             }
         }
+    }
+}
+
+fun usagesToString(appUsages:List<AppUsage>): String {
+    return appUsages.joinToString(separator = "\n\n") { appUsage ->
+        """
+        ID: ${appUsage.id}
+        Hour of Day: ${appUsage.hourOfDay}
+        Package Name: ${appUsage.packageName}
+        Is Audio Device Connected: ${appUsage.isAudioDeviceConnected}
+        Is Charging: ${appUsage.isCharging}
+        Is Wifi Connected: ${appUsage.isWifiConnected}
+        Is Mobile Data Connected: ${appUsage.isMobileDataConnected}
+        Is Bluetooth Connected: ${appUsage.isBluetoothConnected}
+        Brightness: ${appUsage.brightness}
+        """.trimIndent()
     }
 }

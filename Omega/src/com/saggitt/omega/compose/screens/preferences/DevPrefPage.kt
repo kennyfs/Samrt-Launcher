@@ -50,7 +50,8 @@ fun DevPrefPage() {
     val developerPrefs = listOf(
         prefs.restartLauncher,
         prefs.developerOptionsEnabled,
-        prefs.showDebugInfo
+        prefs.showDebugInfo,
+        prefs.exportUsageDatabase
     )
 
     OmegaAppTheme {

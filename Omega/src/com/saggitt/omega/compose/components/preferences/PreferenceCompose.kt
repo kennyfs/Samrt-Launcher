@@ -17,6 +17,11 @@
  */
 package com.saggitt.omega.compose.components.preferences
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.DocumentsContract
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -55,12 +60,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.launcher3.R
+import com.saggitt.omega.appusage.AppUsageDatabase
+import com.saggitt.omega.appusage.usagesToString
 import com.saggitt.omega.compose.navigation.LocalNavController
 import com.saggitt.omega.compose.navigation.subRoute
 import com.saggitt.omega.preferences.BasePreferences
 import com.saggitt.omega.preferences.custom.GridSize
 import com.saggitt.omega.preferences.custom.GridSize2D
 import com.saggitt.omega.util.addIf
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 @Composable
 fun BasePreference(
@@ -165,6 +176,43 @@ fun StringPreference(
     )
 }
 
+@Composable
+fun ExportDatabasePreference(
+    modifier: Modifier = Modifier,
+    pref: BasePreferences.StringPref,
+    index: Int = 1,
+    groupSize: Int = 1,
+    isEnabled: Boolean = true,
+) {
+    val context = LocalContext.current
+    val navController = LocalNavController.current
+    val route = subRoute(pref.navRoute)
+
+    val createDocumentResult = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/plain")) { uri: Uri? ->
+        uri?.let {
+            CoroutineScope(Dispatchers.IO).launch {
+                val usages = AppUsageDatabase.getDatabase(context)!!.appUsageDao().getAll()
+                val usageAsString = usagesToString(usages)
+                withContext(Dispatchers.Main) {
+                    context.contentResolver.openOutputStream(it)?.bufferedWriter()?.use { writer ->
+                        writer.write(usageAsString)
+                    }
+                }
+            }
+        }
+    }
+    BasePreference(
+        modifier = modifier,
+        titleId = pref.titleId,
+        summaryId = pref.summaryId,
+        index = index,
+        groupSize = groupSize,
+        isEnabled = isEnabled,
+        onClick = {
+            createDocumentResult.launch("usage database.txt")
+        }
+    )
+}
 @Composable
 fun StringSetPreference(
     modifier: Modifier = Modifier,

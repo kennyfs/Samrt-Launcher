@@ -147,6 +147,7 @@ import com.saggitt.omega.PREFS_WIDGETS_FULL_WIDTH
 import com.saggitt.omega.PREFS_WIDGET_RADIUS
 import com.saggitt.omega.PREFS_WINDOWCORNER_RADIUS
 import com.saggitt.omega.PREFS_WORK_PROFILE_SEPARATED
+import com.saggitt.omega.PREFS_EXPORT_USAGE
 import com.saggitt.omega.PREF_PILL_QSB
 import com.saggitt.omega.RED
 import com.saggitt.omega.THEME_SYSTEM
@@ -1117,8 +1118,11 @@ class OmegaPreferences(val context: Context) : BasePreferences(context) {
         defaultValue = false,
         onChange = doNothing
     )
-
-
+    var exportUsageDatabase = ExportDatabasePref(
+        key = PREFS_EXPORT_USAGE,
+        titleId = R.string.title__export_usage,
+        onChange = doNothing
+    )
     // MISC
     val customAppName =
         object : MutableMapPref<ComponentKey, String>("pref_appNameMap", reloadAll) {

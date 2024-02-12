@@ -539,6 +539,16 @@ abstract class BasePreferences(context: Context) :
         }
     }
 
+    open inner class ExportDatabasePref(
+        key: String,
+        @StringRes titleId: Int,
+        @StringRes summaryId: Int = -1,
+        defaultValue: String = "",
+        onClick: (() -> Unit)? = null,
+        onChange: () -> Unit = doNothing,
+        navRoute: String = ""
+    ) : StringPref(key, titleId, summaryId, defaultValue, onClick, onChange, navRoute)
+
     open inner class StringTextPref(
         key: String,
         @StringRes titleId: Int,
