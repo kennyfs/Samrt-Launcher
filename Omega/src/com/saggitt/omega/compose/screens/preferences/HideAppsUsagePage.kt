@@ -28,6 +28,6 @@ fun HideAppsUsagePage() {
         pluralTitleId = R.string.hide_usage_app_selected,
         mAppsComparator = getAppsComparator(hiddenUsageApps)
     ) { selectedApps ->
-        prefs.hiddenUsageApps = selectedApps
+        prefs.hiddenUsageApps = selectedApps.map { it.split("/")[0] }.toSet()
     }
 }

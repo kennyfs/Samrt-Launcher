@@ -173,6 +173,8 @@ const val PREFS_LOW_PREFORMANCE = "pref_lowPerformanceMode"
 const val PREFS_DEBUG_MODE = "pref_showDebugInfo"
 const val PREFS_KILL = "kill"
 const val PREFS_EXPORT_USAGE = "export_usage_database"
+const val PREFS_CLEAR_USAGE_DB = "clear_usage_database"
+
 
 // EXTRA PREFS
 const val PREFS_FEED_PROVIDER = "pref_feed_provider"

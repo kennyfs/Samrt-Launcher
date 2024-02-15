@@ -105,8 +105,6 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import android.os.AsyncTask;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -221,10 +219,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-import androidx.room.Room;
 
 /**
  * Default launcher application.
@@ -2056,14 +2054,17 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
             }
             return true;
         }
-        
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppUsage appUsageData = usageDataCollector.collectUsageData(item.getTargetPackage());
-                appUsageDao.insert(appUsageData);
-            }
-        }).start();
+        String packageName = item.getTargetPackage();
+        Set<String> hiddenUsageApps = Utilities.getOmegaPrefs(this).getHiddenUsageApps();
+        if (packageName != null && !hiddenUsageApps.contains(packageName)) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    AppUsage appUsageData = usageDataCollector.collectUsageData(packageName);
+                    appUsageDao.insert(appUsageData);
+                }
+            }).start();
+        }
         
         boolean success = super.startActivitySafely(v, intent, item);
         if (success && v instanceof BubbleTextView) {

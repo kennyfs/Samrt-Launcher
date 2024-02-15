@@ -45,6 +45,7 @@ import com.saggitt.omega.PINK
 import com.saggitt.omega.PREFS_ACCENT
 import com.saggitt.omega.PREFS_BLUR
 import com.saggitt.omega.PREFS_BLUR_RADIUS_X
+import com.saggitt.omega.PREFS_CLEAR_USAGE_DB
 import com.saggitt.omega.PREFS_COLORED_BACKGROUND
 import com.saggitt.omega.PREFS_DASH
 import com.saggitt.omega.PREFS_DASH_LINESIZE
@@ -152,6 +153,7 @@ import com.saggitt.omega.PREF_PILL_QSB
 import com.saggitt.omega.RED
 import com.saggitt.omega.THEME_SYSTEM
 import com.saggitt.omega.THEME_WALLPAPER
+import com.saggitt.omega.appusage.AppUsageDatabase
 import com.saggitt.omega.compose.navigation.Routes
 import com.saggitt.omega.dash.actionprovider.DeviceSettings
 import com.saggitt.omega.dash.actionprovider.EditDash
@@ -876,7 +878,7 @@ class OmegaPreferences(val context: Context) : BasePreferences(context) {
         navRoute = Routes.PREFS_HIDE_APPS_USAGE,
         onChange = reloadApps
     )
-    var hiddenUsageApps by hiddenUsageAppSet
+    var hiddenUsageApps: Set<String> = setOf()
 
     // WIDGETS (SMARTSPACE) & NOTIFICATIONS
     var smartspaceUsePillQsb = BooleanPref(
@@ -1121,6 +1123,17 @@ class OmegaPreferences(val context: Context) : BasePreferences(context) {
     var exportUsageDatabase = ExportDatabasePref(
         key = PREFS_EXPORT_USAGE,
         titleId = R.string.title__export_usage,
+        onChange = doNothing
+    )
+    var clearDatabase = StringPref(
+        key = PREFS_CLEAR_USAGE_DB,
+        titleId = R.string.title__clear_usage,
+        onClick = {
+            val dao = AppUsageDatabase.getDatabase(context).appUsageDao()
+            Thread{
+                dao.clearAll()
+            }.start()
+        },
         onChange = doNothing
     )
     // MISC

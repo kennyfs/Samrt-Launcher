@@ -35,6 +35,9 @@ interface AppUsageDao {
 
     @Delete
     fun delete(appUsage: AppUsage)
+
+    @Query("DELETE FROM AppUsage")
+    fun clearAll(): Int
 }
 
 @Database(entities = [AppUsage::class], version = 1, exportSchema = false)

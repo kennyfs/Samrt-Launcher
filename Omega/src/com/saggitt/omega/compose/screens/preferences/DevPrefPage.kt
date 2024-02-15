@@ -51,7 +51,8 @@ fun DevPrefPage() {
         prefs.restartLauncher,
         prefs.developerOptionsEnabled,
         prefs.showDebugInfo,
-        prefs.exportUsageDatabase
+        prefs.exportUsageDatabase,
+        prefs.clearDatabase
     )
 
     OmegaAppTheme {
