@@ -487,8 +487,8 @@
     <string name="change_default_home">Set as Home App</string>
     <string name="feed_add_widget">Add Widget</string>
     <string name="feed_widget">Widgets</string>
-    <string name="title__export_usage">Export usage from the database</string>
-    <string name="title__clear_usage">Clear usage from the database</string>
+    <string name="title__export_usage">Export usage database</string>
+    <string name="title__clear_usage">Clear usage database</string>
     <!-- ABOUT -->
     <string name="about_build_information">Build info</string>
     <string name="title__about_donate">Donate</string>

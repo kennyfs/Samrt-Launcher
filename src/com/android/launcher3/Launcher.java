@@ -219,7 +219,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -237,7 +239,9 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
     private AppUsageDao appUsageDao;
 
     private UsageDataCollector usageDataCollector;
-    
+    private HashMap<String, String> appPackageToRandomStringMap = new HashMap<>();
+    private static final String PREFS_UUID_MAP = "AppUUIDMap";
+    private SharedPreferences prefs_uuid_map;
     static final boolean LOGD = false;
 
     static final boolean DEBUG_STRICT_MODE = false;
@@ -384,6 +388,8 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
         appUsageDB = AppUsageDatabase.Companion.getDatabase(this);
         appUsageDao = appUsageDB.appUsageDao();
         usageDataCollector = new UsageDataCollector(this);
+        prefs_uuid_map = getSharedPreferences(PREFS_UUID_MAP, MODE_PRIVATE);
+        loadAppUUIDMap();
         Object traceToken = TraceHelper.INSTANCE.beginSection(ON_CREATE_EVT,
             TraceHelper.FLAG_UI_EVENT);
         if (DEBUG_STRICT_MODE) {
@@ -526,7 +532,17 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
             getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         }
     }
-
+    private void loadAppUUIDMap() {
+        Map<String, ?> allEntries = prefs_uuid_map.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            appPackageToRandomStringMap.put(entry.getKey(), entry.getValue().toString());
+        }
+    }
+    private void saveAppUUIDMap(String packageName, String uuid) {
+        SharedPreferences.Editor editor = prefs_uuid_map.edit();
+        editor.putString(packageName, uuid);
+        editor.apply();
+    }
     protected LauncherOverlayManager getDefaultOverlay() {
         return new OverlayCallbackImpl(this);
     }
@@ -2040,7 +2056,6 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
             return false;
         }
     }
-
     @Override
     public boolean startActivitySafely(View v, Intent intent, ItemInfo item) {
         if (!hasBeenResumed()) {
@@ -2055,14 +2070,16 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
             return true;
         }
         String packageName = item.getTargetPackage();
+        String packageUUID = appPackageToRandomStringMap.computeIfAbsent(packageName, k -> {
+            String uuid = UUID.randomUUID().toString();
+            saveAppUUIDMap(k, uuid);
+            return uuid;
+        });
         Set<String> hiddenUsageApps = Utilities.getOmegaPrefs(this).getHiddenUsageApps();
         if (packageName != null && !hiddenUsageApps.contains(packageName)) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    AppUsage appUsageData = usageDataCollector.collectUsageData(packageName);
-                    appUsageDao.insert(appUsageData);
-                }
+            new Thread(() -> {
+                AppUsage appUsageData = usageDataCollector.collectUsageData(packageUUID);
+                appUsageDao.insert(appUsageData);
             }).start();
         }
         

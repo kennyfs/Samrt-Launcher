@@ -16,7 +16,7 @@ import androidx.room.OnConflictStrategy
 data class AppUsage(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val hourOfDay: Int,
-    val packageName: String,
+    val packageUUID: String,
     val isAudioDeviceConnected: Boolean,
     val isCharging: Boolean,
     val isWifiConnected: Boolean,
@@ -62,17 +62,9 @@ abstract class AppUsageDatabase : RoomDatabase() {
 }
 
 fun usagesToString(appUsages:List<AppUsage>): String {
-    return appUsages.joinToString(separator = "\n\n") { appUsage ->
-        """
-        ID: ${appUsage.id}
-        Hour of Day: ${appUsage.hourOfDay}
-        Package Name: ${appUsage.packageName}
-        Is Audio Device Connected: ${appUsage.isAudioDeviceConnected}
-        Is Charging: ${appUsage.isCharging}
-        Is Wifi Connected: ${appUsage.isWifiConnected}
-        Is Mobile Data Connected: ${appUsage.isMobileDataConnected}
-        Is Bluetooth Connected: ${appUsage.isBluetoothConnected}
-        Brightness: ${appUsage.brightness}
-        """.trimIndent()
+    val header = listOf("ID", "Hour of Day", "Package UUID", "Is Audio Device Connected", "Is Charging", "Is Wifi Connected", "Is Mobile Data Connected", "Is Bluetooth Connected", "Brightness").joinToString(",")
+    val rows = appUsages.joinToString("\n") { appUsage ->
+        listOf(appUsage.id, appUsage.hourOfDay, appUsage.packageUUID, appUsage.isAudioDeviceConnected, appUsage.isCharging, appUsage.isWifiConnected, appUsage.isMobileDataConnected, appUsage.isBluetoothConnected, appUsage.brightness).joinToString(",")
     }
+    return "$header\n$rows"
 }

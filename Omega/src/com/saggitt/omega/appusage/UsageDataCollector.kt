@@ -15,7 +15,7 @@ import java.util.Calendar
 
 class UsageDataCollector(private val context: Context) {
 
-    fun collectUsageData(packageName: String): AppUsage {
+    fun collectUsageData(packageUUID: String): AppUsage {
 
         val now = Calendar.getInstance()
         val hour = now.get(Calendar.HOUR_OF_DAY) // 24 hour format
@@ -60,7 +60,7 @@ class UsageDataCollector(private val context: Context) {
         return AppUsage(
             0,
             hour,
-            packageName,
+            packageUUID,
             isAudioDeviceConnected,
             isCharging,
             isWifiConnected,

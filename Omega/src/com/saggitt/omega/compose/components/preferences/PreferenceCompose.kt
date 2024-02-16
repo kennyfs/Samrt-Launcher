@@ -68,10 +68,7 @@ import com.saggitt.omega.preferences.BasePreferences
 import com.saggitt.omega.preferences.custom.GridSize
 import com.saggitt.omega.preferences.custom.GridSize2D
 import com.saggitt.omega.util.addIf
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.launch
+import java.io.OutputStreamWriter
 
 @Composable
 fun BasePreference(
@@ -190,15 +187,18 @@ fun ExportDatabasePreference(
 
     val createDocumentResult = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/plain")) { uri: Uri? ->
         uri?.let {
-            CoroutineScope(Dispatchers.IO).launch {
+            Thread {
                 val usages = AppUsageDatabase.getDatabase(context)!!.appUsageDao().getAll()
                 val usageAsString = usagesToString(usages)
-                withContext(Dispatchers.Main) {
-                    context.contentResolver.openOutputStream(it)?.bufferedWriter()?.use { writer ->
-                        writer.write(usageAsString)
-                    }
+                
+                val outputStream = context.contentResolver.openOutputStream(it)
+                if (outputStream != null) {
+                    val writer = OutputStreamWriter(outputStream)
+                    writer.write(usageAsString)
+                    writer.flush()
+                    writer.close()
                 }
-            }
+            }.start()
         }
     }
     BasePreference(
