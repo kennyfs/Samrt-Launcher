@@ -53,6 +53,11 @@ open class PageItem(
             R.drawable.ic_hide_apps,
             Routes.PREFS_HIDE_APPS_USAGE
         )
+        val PrefsSetDefault = PageItem(
+            R.string.title__set_default_launcher,
+            R.drawable.ic_home,
+            Routes.PREFS_SET_LAUNCHER
+        )
         val PrefsBackup = PageItem(
             R.string.backups,
             R.drawable.ic_import_export,

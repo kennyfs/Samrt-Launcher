@@ -10,7 +10,7 @@ import android.net.NetworkCapabilities
 import android.os.BatteryManager
 import android.provider.Settings
 import android.bluetooth.BluetoothAdapter
-import androidx.core.content.ContextCompat.getSystemService
+import android.util.Log
 import java.util.Calendar
 
 class UsageDataCollector(private val context: Context) {
@@ -30,7 +30,6 @@ class UsageDataCollector(private val context: Context) {
                 AudioDeviceInfo.TYPE_BLE_HEADSET,
                 AudioDeviceInfo.TYPE_BLE_SPEAKER,
                 AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
-                AudioDeviceInfo.TYPE_BUILTIN_EARPIECE,
                 AudioDeviceInfo.TYPE_LINE_ANALOG,
                 AudioDeviceInfo.TYPE_LINE_DIGITAL,
                 AudioDeviceInfo.TYPE_USB_ACCESSORY,
@@ -57,7 +56,7 @@ class UsageDataCollector(private val context: Context) {
 
         val brightness = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
 
-        return AppUsage(
+        val appUsage = AppUsage(
             0,
             hour,
             packageUUID,
@@ -68,5 +67,8 @@ class UsageDataCollector(private val context: Context) {
             isBluetoothConnected,
             brightness
         )
+        Log.d("UsageDataCollector", "usage:"+listOf(appUsage.id, appUsage.hourOfDay, appUsage.packageUUID, appUsage.isAudioDeviceConnected, appUsage.isCharging, appUsage.isWifiConnected, appUsage.isMobileDataConnected, appUsage.isBluetoothConnected, appUsage.brightness).joinToString(","))
+
+        return appUsage
     }
 }

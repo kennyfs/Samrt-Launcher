@@ -34,6 +34,7 @@ object Routes {
     const val PREFS_DM = "prefs_desktop_mode"
     const val PREFS_DEV = "prefs_developer"
 
+    const val PREFS_SET_LAUNCHER = "prefs_set_default_launcher"
     const val ABOUT = "about"
     const val TRANSLATORS = "translators"
     const val LICENSE = "license"

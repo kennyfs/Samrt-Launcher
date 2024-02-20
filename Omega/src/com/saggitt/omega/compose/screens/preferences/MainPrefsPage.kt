@@ -61,6 +61,7 @@ fun MainPrefsPage() {
         PageItem.PrefsHideUsageApps
     )
     val otherPrefs = listOfNotNull(
+        PageItem.PrefsSetDefault,
         PageItem.PrefsBackup,
         PageItem.PrefsDesktopMode,
         if (prefs.developerOptionsEnabled.onGetValue()) PageItem.PrefsDeveloper
@@ -137,6 +138,7 @@ fun NavGraphBuilder.mainPrefsGraph(route: String) {
         preferenceGraph(route = subRoute(Routes.PREFS_DEV), { DevPrefPage() })
         gesturesPrefGraph(route = subRoute(Routes.PREFS_GESTURES))
         preferenceGraph(route = subRoute(Routes.PREFS_HIDE_APPS_USAGE), { HideAppsUsagePage() })
+        preferenceGraph(route = subRoute(Routes.PREFS_SET_LAUNCHER), { SetDefaultLauncherPage() })
         aboutPrefsGraph(route = subRoute(Routes.ABOUT))
     }
 }

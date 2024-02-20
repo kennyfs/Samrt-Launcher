@@ -10,6 +10,7 @@
     <string name="title__general_smartspace">主頁小工具</string>
     <string name="title__general_gestures_dash">手勢與 Dash</string>
     <string name="title__check_hide_app_list">隱藏App使用紀錄</string>
+    <string name="title__set_default_launcher">設定預設啟動器</string>
     <string name="title__general_search_feed">搜尋與資訊</string>
     <string name="title__general_widgets_notifications">小工具與通知</string>
     <string name="summary__general_drawer">客製化您的抽屜</string>
