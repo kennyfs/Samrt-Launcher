@@ -206,6 +206,7 @@ import com.android.systemui.plugins.shared.LauncherOverlayManager.LauncherOverla
 import com.saggitt.omega.OmegaApp;
 import com.saggitt.omega.OmegaLauncher;
 import com.saggitt.omega.OverlayCallbackImpl;
+import com.saggitt.omega.preferences.OmegaPreferences;
 import com.saggitt.omega.util.Config;
 import com.saggitt.omega.appusage.UsageDataCollector;
 import com.saggitt.omega.appusage.AppUsage;
@@ -2078,7 +2079,12 @@ public class Launcher extends StatefulActivity<LauncherState> implements Launche
         Set<String> hiddenUsageApps = Utilities.getOmegaPrefs(this).getHiddenUsageApps();
         if (packageName != null && !hiddenUsageApps.contains(packageName)) {
             new Thread(() -> {
-                AppUsage appUsageData = usageDataCollector.collectUsageData(packageUUID);
+                AppUsage appUsageData;
+                if(Utilities.getOmegaPrefs(this).getAnonymizePackageName().onGetValue()) {
+                    appUsageData = usageDataCollector.collectUsageData(packageUUID);
+                }else{
+                    appUsageData = usageDataCollector.collectUsageData(packageName);
+                }
                 appUsageDao.insert(appUsageData);
             }).start();
         }

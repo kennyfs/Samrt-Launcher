@@ -35,8 +35,8 @@ android {
     namespace = "com.android.launcher3"
     compileSdk = 33
 
-    val name = "1.0"
-    val code = 1
+    val name = "1.1"
+    val code = 2
 
 
     defaultConfig {

@@ -51,6 +51,7 @@ fun DevPrefPage() {
         prefs.restartLauncher,
         prefs.developerOptionsEnabled,
         prefs.showDebugInfo,
+        prefs.anonymizePackageName,
         prefs.exportUsageDatabase,
         prefs.clearDatabase
     )

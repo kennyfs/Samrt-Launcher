@@ -15,7 +15,7 @@ import java.util.Calendar
 
 class UsageDataCollector(private val context: Context) {
 
-    fun collectUsageData(packageUUID: String): AppUsage {
+    fun collectUsageData(packageName: String): AppUsage {
 
         val now = Calendar.getInstance()
         val hour = now.get(Calendar.HOUR_OF_DAY) // 24 hour format
@@ -39,7 +39,6 @@ class UsageDataCollector(private val context: Context) {
                 AudioDeviceInfo.TYPE_WIRED_HEADSET
             )
         }
-
         val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
             context.registerReceiver(null, ifilter)
         }
@@ -59,7 +58,7 @@ class UsageDataCollector(private val context: Context) {
         val appUsage = AppUsage(
             0,
             hour,
-            packageUUID,
+            packageName,
             isAudioDeviceConnected,
             isCharging,
             isWifiConnected,
@@ -67,7 +66,7 @@ class UsageDataCollector(private val context: Context) {
             isBluetoothConnected,
             brightness
         )
-        Log.d("UsageDataCollector", "usage:"+listOf(appUsage.id, appUsage.hourOfDay, appUsage.packageUUID, appUsage.isAudioDeviceConnected, appUsage.isCharging, appUsage.isWifiConnected, appUsage.isMobileDataConnected, appUsage.isBluetoothConnected, appUsage.brightness).joinToString(","))
+        Log.d("UsageDataCollector", "usage:"+listOf(appUsage.id, appUsage.hourOfDay, appUsage.packageName, appUsage.isAudioDeviceConnected, appUsage.isCharging, appUsage.isWifiConnected, appUsage.isMobileDataConnected, appUsage.isBluetoothConnected, appUsage.brightness).joinToString(","))
 
         return appUsage
     }

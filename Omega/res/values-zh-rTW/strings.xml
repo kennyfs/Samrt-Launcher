@@ -472,6 +472,8 @@
     <string name="failed">發生錯誤。</string>
     <string name="developer_options_title">開發人員選項</string>
     <string name="title__dev_show_debug_info">顯示偵錯資訊</string>
+    <string name="title__anonymous_package">匿名化應用程式</string>
+    <string name="title__anonymous_package_summary">紀錄UUID取代package name</string>
     <string name="title__export_usage">匯出使用紀錄資料庫</string>
     <string name="title__clear_usage">清除使用紀錄資料庫</string>
     <string name="title__restart_launcher">重新啟動</string>

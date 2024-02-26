@@ -43,6 +43,7 @@ import com.saggitt.omega.NOTIFICATION_ENABLED_LISTENERS
 import com.saggitt.omega.OmegaApp
 import com.saggitt.omega.PINK
 import com.saggitt.omega.PREFS_ACCENT
+import com.saggitt.omega.PREFS_ANONYMOUS_PACKAGE
 import com.saggitt.omega.PREFS_BLUR
 import com.saggitt.omega.PREFS_BLUR_RADIUS_X
 import com.saggitt.omega.PREFS_CLEAR_USAGE_DB
@@ -1117,6 +1118,13 @@ class OmegaPreferences(val context: Context) : BasePreferences(context) {
     val showDebugInfo = BooleanPref(
         key = PREFS_DEBUG_MODE,
         titleId = R.string.title__dev_show_debug_info,
+        defaultValue = false,
+        onChange = doNothing
+    )
+    var anonymizePackageName = BooleanPref(
+        key = PREFS_ANONYMOUS_PACKAGE,
+        titleId = R.string.title__anonymous_package,
+        summaryId = R.string.title__anonymous_package_summary,
         defaultValue = false,
         onChange = doNothing
     )

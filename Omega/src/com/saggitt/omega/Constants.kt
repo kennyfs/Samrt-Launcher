@@ -172,8 +172,9 @@ const val PREFS_DESKTOP_MODE_SETTINGS = "pref_desktop_mode_settings"
 const val PREFS_LOW_PREFORMANCE = "pref_lowPerformanceMode"
 const val PREFS_DEBUG_MODE = "pref_showDebugInfo"
 const val PREFS_KILL = "kill"
-const val PREFS_EXPORT_USAGE = "export_usage_database"
-const val PREFS_CLEAR_USAGE_DB = "clear_usage_database"
+const val PREFS_ANONYMOUS_PACKAGE = "pref_anonymous_package_name"
+const val PREFS_EXPORT_USAGE = "pref_export_usage_database"
+const val PREFS_CLEAR_USAGE_DB = "pref_clear_usage_database"
 
 
 // EXTRA PREFS
