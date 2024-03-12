@@ -175,6 +175,7 @@ const val PREFS_KILL = "kill"
 const val PREFS_ANONYMOUS_PACKAGE = "pref_anonymous_package_name"
 const val PREFS_EXPORT_USAGE = "pref_export_usage_database"
 const val PREFS_CLEAR_USAGE_DB = "pref_clear_usage_database"
+const val PREFS_SHOW_NN_RESULTS = "pref_show_nn_results"
 
 
 // EXTRA PREFS

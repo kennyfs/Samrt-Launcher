@@ -135,7 +135,7 @@ fun NavGraphBuilder.mainPrefsGraph(route: String) {
         preferenceGraph(route = subRoute(Routes.PREFS_SEARCH), { SearchPrefsPage() })
         preferenceGraph(route = subRoute(Routes.PREFS_BACKUPS), { BackupsPrefPage() })
         preferenceGraph(route = subRoute(Routes.PREFS_DM), { BlankScreen() }) // TODO
-        preferenceGraph(route = subRoute(Routes.PREFS_DEV), { DevPrefPage() })
+        devPrefsGraph(route = subRoute(Routes.PREFS_DEV))
         gesturesPrefGraph(route = subRoute(Routes.PREFS_GESTURES))
         preferenceGraph(route = subRoute(Routes.PREFS_HIDE_APPS_USAGE), { HideAppsUsagePage() })
         preferenceGraph(route = subRoute(Routes.PREFS_SET_LAUNCHER), { SetDefaultLauncherPage() })

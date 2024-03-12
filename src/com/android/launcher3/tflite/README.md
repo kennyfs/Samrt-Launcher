@@ -1,0 +1,1 @@
+Using code from [TF lite example](https://github.com/tensorflow/examples/tree/master/lite/examples/recommendation/android)

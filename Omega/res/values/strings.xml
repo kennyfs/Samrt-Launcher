@@ -492,6 +492,8 @@
     <string name="title__anonymous_package_summary">Record UUID instead of package name</string>
     <string name="title__export_usage">Export usage database</string>
     <string name="title__clear_usage">Clear usage database</string>
+    <string name="title__show_nn_results">Show NN result</string>
+    <string name="summary__show_nn_results">Run NN and get 5 most possible apps</string>
     <!-- ABOUT -->
     <string name="about_build_information">Build info</string>
     <string name="title__about_donate">Donate</string>

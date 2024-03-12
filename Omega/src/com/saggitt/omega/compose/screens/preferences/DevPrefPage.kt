@@ -30,10 +30,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraphBuilder
+import coil.annotation.ExperimentalCoilApi
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
 import com.saggitt.omega.compose.components.ViewWithActionBar
 import com.saggitt.omega.compose.components.preferences.PreferenceGroup
+import com.saggitt.omega.compose.navigation.Routes
+import com.saggitt.omega.compose.navigation.preferenceGraph
 import com.saggitt.omega.theme.OmegaAppTheme
 
 @Composable
@@ -53,7 +57,8 @@ fun DevPrefPage() {
         prefs.showDebugInfo,
         prefs.anonymizePackageName,
         prefs.exportUsageDatabase,
-        prefs.clearDatabase
+        prefs.clearDatabase,
+        prefs.showNNResults
     )
 
     OmegaAppTheme {
@@ -76,5 +81,11 @@ fun DevPrefPage() {
                 }
             }
         }
+    }
+}
+
+fun NavGraphBuilder.devPrefsGraph(route: String) {
+    preferenceGraph(route, { DevPrefPage() }) { subRoute ->
+        preferenceGraph(route = subRoute(Routes.SHOW_NN_RESULTS), { ShowNNResultsPage() })
     }
 }

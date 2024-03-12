@@ -150,6 +150,7 @@ import com.saggitt.omega.PREFS_WIDGET_RADIUS
 import com.saggitt.omega.PREFS_WINDOWCORNER_RADIUS
 import com.saggitt.omega.PREFS_WORK_PROFILE_SEPARATED
 import com.saggitt.omega.PREFS_EXPORT_USAGE
+import com.saggitt.omega.PREFS_SHOW_NN_RESULTS
 import com.saggitt.omega.PREF_PILL_QSB
 import com.saggitt.omega.RED
 import com.saggitt.omega.THEME_SYSTEM
@@ -1142,6 +1143,13 @@ class OmegaPreferences(val context: Context) : BasePreferences(context) {
                 dao.clearAll()
             }.start()
         },
+        onChange = doNothing
+    )
+    var showNNResults = StringPref(
+        key = PREFS_SHOW_NN_RESULTS,
+        titleId = R.string.title__show_nn_results,
+        summaryId = R.string.summary__show_nn_results,
+        navRoute = Routes.SHOW_NN_RESULTS,
         onChange = doNothing
     )
     // MISC

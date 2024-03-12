@@ -30,6 +30,9 @@ interface AppUsageDao {
     @Query("SELECT * FROM AppUsage")
     fun getAll(): List<AppUsage>
 
+    @Query("SELECT * FROM AppUsage ORDER BY id DESC LIMIT :n")
+    fun getLastNRows(n: Int): List<AppUsage>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(appUsage: AppUsage)
 

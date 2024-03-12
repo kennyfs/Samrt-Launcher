@@ -33,6 +33,7 @@ object Routes {
     const val PREFS_BACKUPS = "prefs_backups"
     const val PREFS_DM = "prefs_desktop_mode"
     const val PREFS_DEV = "prefs_developer"
+    const val SHOW_NN_RESULTS ="prefs_show_nn_results"
 
     const val PREFS_SET_LAUNCHER = "prefs_set_default_launcher"
     const val ABOUT = "about"

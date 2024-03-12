@@ -272,6 +272,9 @@ dependencies {
     //Others
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.guava:guava:33.0.0-android")
+    implementation("org.tensorflow:tensorflow-lite:2.15.0")
 
     // Recents lib dependency
     "withQuickstepImplementation"(project(":SystemUIShared"))

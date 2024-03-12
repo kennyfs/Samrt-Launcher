@@ -1,0 +1,4 @@
+{
+  "model": "kennyfs_model.tflite",
+  "outputLength": 100
+}
